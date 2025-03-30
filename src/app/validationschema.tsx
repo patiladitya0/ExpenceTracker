@@ -24,4 +24,8 @@ const LoanSchema = z.object({
   status: Status,
 });
 
-export { ExpenseSchema, Payments, LoanSchema, LoanType, Status };
+export { ExpenseSchema, Payments, LoanSchema, LoanType, Status, LoanStatusEdit };
+
+const LoanStatusEdit = z.object({
+  status: Status,
+})

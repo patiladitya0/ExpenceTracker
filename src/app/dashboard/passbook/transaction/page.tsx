@@ -1,6 +1,6 @@
 import prisma from "../../../../../prisma/client";
-import { columns } from "./columns";
-import { DataTable } from "./data-types";
+import { columns } from "./transaction-columns";
+import { DataTable } from "./transaction-datatypes";
 
 async function getData() {
   const expenses = await prisma.expense.findMany();

@@ -36,24 +36,18 @@ const data = {
       url: "",
       items: [
         {
-          title: "To Give",
-          url: "#",
+          title: "Borrowed",
+          url: "/dashboard/loanbook/borrowed",
         },
         {
-          title: "To Take",
-          url: "/dashboard/loanbook/totake",
+          title: "Lended",
+          url: "/dashboard/loanbook/lended",
         },
       ],
     },
     {
-      title: "Settings",
-      url: "#",
-      items: [
-        {
-          title: "Contribution Guide",
-          url: "#",
-        },
-      ],
+      title: "Analysis",
+      url: "/dashboard/analysis",
     },
   ],
 };

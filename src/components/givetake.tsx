@@ -9,22 +9,31 @@ import {
   SelectValue,
 } from "./ui/select";
 
-const GiveTake = ({ control, name }: { control: any; name: any }) => {
+const GiveTake = ({
+  control,
+  name,
+  loan,
+}: {
+  control: any;
+  name: any;
+  loan?: string;
+}) => {
   return (
     <div>
       <Controller
         control={control}
         name={name}
+        defaultValue={loan || " "}
         render={({ field }) => (
           <Select onValueChange={field.onChange} value={field.value || ""}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Taking/ Giving" />
+              <SelectValue placeholder="Borrowing/Lending" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Loan</SelectLabel>
-                <SelectItem value="Taking">Taking</SelectItem>
-                <SelectItem value="Giving">Giving</SelectItem>
+                <SelectItem value="Taking">Borrowing</SelectItem>
+                <SelectItem value="Giving">Lending</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>

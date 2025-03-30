@@ -9,15 +9,26 @@ import {
   SelectValue,
 } from "./ui/select";
 
-const Status = ({ control, name }: { control: any; name: any }) => {
+const Status = ({
+  control,
+  name,
+  loan,
+}: {
+  control: any;
+  name: any;
+  loan?: string;
+}) => {
   return (
     <div>
       <Controller
         control={control}
         name={name}
-        defaultValue="Pending"
+        defaultValue={loan || " "}
         render={({ field }) => (
-          <Select onValueChange={field.onChange} value={field.value || "Pending"}>
+          <Select
+            onValueChange={field.onChange}
+            value={field.value || "Pending"}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Whats the Status" />
             </SelectTrigger>
