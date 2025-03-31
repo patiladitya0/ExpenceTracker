@@ -7,9 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Loan } from "@prisma/client";
 
-import React from "react";
 import { Controller } from "react-hook-form";
 
 const PaymentMode = ({

@@ -1,10 +1,9 @@
-import LoanForm from "@/components/ui/app-loanform";
+import { columns } from "@/app/dashboard/loanbook/_components/loan-columns";
+import { DataTable } from "@/app/dashboard/loanbook/_components/loan-datatypes";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import prisma from "../../../../../prisma/client";
-import { columns } from "@/app/dashboard/loanbook/_components/loan-columns";
-import { DataTable } from "@/app/dashboard/loanbook/_components/loan-datatypes";
 
 const Totake = async () => {
   const data = await getData();

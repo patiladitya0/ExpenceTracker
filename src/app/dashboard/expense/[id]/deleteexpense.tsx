@@ -12,7 +12,6 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { Toaster } from "@/components/ui/sonner";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
