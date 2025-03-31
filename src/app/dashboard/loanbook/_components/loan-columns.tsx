@@ -130,9 +130,18 @@ export const columns: ColumnDef<Loan>[] = [
           <DropdownMenuContent className="w-40">
             <DropdownMenuLabel>Edit Status</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuRadioGroup value={newStatus} onValueChange={(value) => handleStatusUpdate(value as "Completed" | "Pending")}>
-              <DropdownMenuRadioItem value="Pending">Pending</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="Completed">Completed</DropdownMenuRadioItem>
+            <DropdownMenuRadioGroup
+              value={newStatus}
+              onValueChange={(value) =>
+                handleStatusUpdate(value as "Completed" | "Pending")
+              }
+            >
+              <DropdownMenuRadioItem value="Pending">
+                Pending
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="Completed">
+                Completed
+              </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -165,7 +174,9 @@ export const columns: ColumnDef<Loan>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(loan.id)}>
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(loan.id)}
+            >
               Copy ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />

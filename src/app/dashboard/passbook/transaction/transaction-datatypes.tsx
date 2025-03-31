@@ -26,7 +26,9 @@ import { RangeDate } from "@/components/ui/app-calenderDateRange";
 import { DataTableViewOptions } from "@/components/ui/columntoggel";
 import { DataTablePagination } from "@/components/ui/paging";
 import { DateRange } from "react-day-picker";
-import { SkeletonTable } from "@/components/app-skelleton";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -42,22 +44,19 @@ export function DataTable<TData extends { date: Date }>({
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
   const [date, setDate] = React.useState<DateRange | undefined>();
-
+  const isMobile = useMediaQuery("(max-width: 640px)");
 
   // Filter data based on the selected date range
   const filteredData = React.useMemo(() => {
-    if (!date?.from || !date?.to) return data; // If no date range is selected, return all data
-
+    if (!date?.from || !date?.to) return data;
     return data.filter((item) => {
       const itemDate = new Date(item.date);
       return itemDate >= date.from! && itemDate <= date.to!;
     });
   }, [data, date]);
 
-  
-
   const table = useReactTable({
-    data: filteredData, // Use filtered data
+    data: filteredData,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -78,7 +77,7 @@ export function DataTable<TData extends { date: Date }>({
   return (
     <div>
       {/* Filters/search */}
-      <div className="flex items-center py-4 gap-3">
+      <div className="flex items-center py-4 gap-3 flex-wrap">
         <Input
           placeholder="Filter labels..."
           value={(table.getColumn("label")?.getFilterValue() as string) ?? ""}
@@ -93,59 +92,97 @@ export function DataTable<TData extends { date: Date }>({
         <DataTableViewOptions table={table} />
       </div>
 
-      {/* table */}
-      <div className="rounded-md border">
-        <Table >
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
+      {/* Table - Mobile View */}
+      {isMobile ? (
+        <ScrollArea className="h-[calc(100vh-250px)] rounded-md border">
+          <div className="space-y-2 p-2">
+            {table.getRowModel().rows.map((row) => (
+              <div key={row.id} className="border rounded-lg p-4 shadow-sm">
+                <div className="space-y-2">
+                  {row.getVisibleCells().map((cell) => {
+                    const headerContext = table
+                      .getHeaderGroups()[0]
+                      ?.headers.find(
+                        (header) => header.column.id === cell.column.id
+                      );
+                    return (
+                      <div
+                        key={cell.id}
+                        className="flex items-center justify-between"
+                      >
+                        <span className="text-sm font-medium">
+                          {headerContext &&
+                            flexRender(
+                              headerContext.column.columnDef.header,
+                              headerContext.getContext()
+                            )}
+                        </span>
+                        <span className="text-right">
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
                           )}
-                    </TableHead>
-                  );
-                })}
-              </TableRow>
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             ))}
-          </TableHeader>
-          <TableBody className="uppercase">
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
+          </div>
+        </ScrollArea>
+      ) : (
+        // Desktop View
+        <div className="rounded-md border">
+          <Table>
+            <TableHeader>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <TableHead key={header.id}>
+                      {!header.isPlaceholder &&
+                        flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                    </TableHead>
                   ))}
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
+              ))}
+            </TableHeader>
+            <TableBody className="uppercase">
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    No results.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      )}
 
-      {/* Next/Prev */}
+      {/* Pagination */}
       <DataTablePagination table={table} />
     </div>
   );
