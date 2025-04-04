@@ -35,10 +35,10 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest, // Use NextRequest instead of Request
+  { params }: { params: { id: string } } // Correct typing for params
 ) {
-  const expenseId = params.id.trim();
+  const expenseId = params.id.trim(); // Extract the ID from params
   const expense = await prisma.expense.findUnique({
     where: { id: expenseId },
   });

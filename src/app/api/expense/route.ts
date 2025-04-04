@@ -22,7 +22,8 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(newExpense, { status: 201 });
-  } catch (error) {
+  } catch {
+    // Remove 'error' if you're not using it
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
@@ -30,7 +31,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const todayStart = startOfDay(new Date());
   const todayEnd = endOfDay(new Date());
   const expense = await prisma.expense.findMany({

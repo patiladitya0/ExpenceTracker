@@ -16,7 +16,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Expense } from "@prisma/client";
 import axios from "axios";
 import { Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";

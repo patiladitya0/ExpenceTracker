@@ -11,20 +11,20 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useForm } from "react-hook-form";
-import GiveTake from "../givetake";
 import { Loan } from "@prisma/client";
 import axios from "axios";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import PaymentMode from "../app-paymentMode";
+import GiveTake from "../givetake";
 import Status from "../status";
 import { CalenderDateSingle } from "./app-calenderDateSingle";
 import { Textarea } from "./textarea";
 
 const LoanForm = ({ loan }: { loan?: Loan }) => {
   const [isSubmitting, setisSubmitting] = useState(false);
-  const { register, reset, control, handleSubmit, setValue } = useForm<Loan>();
+  const { register, reset, control, handleSubmit} = useForm<Loan>();
   const [Error, setError] = useState("");
 
   const Submitdata = handleSubmit(async (data) => {
