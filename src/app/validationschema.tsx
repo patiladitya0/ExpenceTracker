@@ -24,8 +24,21 @@ const LoanSchema = z.object({
   status: Status,
 });
 
-export { ExpenseSchema, Payments, LoanSchema, LoanType, Status, LoanStatusEdit };
-
 const LoanStatusEdit = z.object({
   status: Status,
-})
+});
+
+const TripSchema = z.object({
+  name: z.string().min(1, "Name is required").max(255),
+  date: z.coerce.date(),
+});
+
+export {
+  ExpenseSchema,
+  Payments,
+  LoanSchema,
+  LoanType,
+  Status,
+  LoanStatusEdit,
+  TripSchema
+};

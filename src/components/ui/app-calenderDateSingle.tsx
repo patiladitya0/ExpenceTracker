@@ -67,25 +67,8 @@ export function CalenderDateSingle({
         </PopoverTrigger>
         <PopoverContent
           align="start"
-          className="flex w-auto flex-col space-y-2 p-2"
+          className="flex w-auto flex-col space-y-1 p-2"
         >
-          <Select
-            onValueChange={(value) => {
-              const newDate = addDays(new Date(), parseInt(value));
-              handleChange(newDate);
-            }}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select" />
-            </SelectTrigger>
-            <SelectContent position="popper">
-              <SelectItem value="-1">Yesterday</SelectItem>
-              <SelectItem value="0">Today</SelectItem>
-              <SelectItem value="1">Tomorrow</SelectItem>
-              <SelectItem value="3">In 3 days</SelectItem>
-            </SelectContent>
-          </Select>
-
           <div className="rounded-md border">
             <Calendar
               mode="single"

@@ -48,3 +48,10 @@ enum Status {
   Completed
   Pending
 }
+
+
+model Trip {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  date DateTime
+}

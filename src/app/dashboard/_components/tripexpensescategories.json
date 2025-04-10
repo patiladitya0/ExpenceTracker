@@ -1,0 +1,32 @@
+[
+  { "name": "Food", "icon": "Utensils" },
+  {
+    "name": "Transportation",
+    " icon": "Bus"
+  },
+
+  {
+    "name": "Accommodation",
+    " icon": "Hotel"
+  },
+  { "name": "Groceries", "icon": "Carrot" },
+  {
+    "name": "Shopping",
+    " icon": "ShoppingBag"
+  },
+  { "name": "Activities", "icon": "Footprints" },
+  {
+    "name": "Drinks",
+    " icon": "Wine"
+  },
+  { "name": "Coffee", "icon": "Coffee" },
+  {
+    "name": "Travel",
+    " icon": "Bus"
+  },
+  { "name": "General", "icon": "Sticker " },
+
+  { "name": "Fee & Charges", "icon": "ReceiptText" },
+
+  { "name": "Money Exchange", "icon": "Utensils" }
+]

@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Goa",
+        "date": "26-5-2025",
+        "totalExpence": 40000
+    },
+    {
+        "name": "Manali",
+        "date": "15-6-2025",
+        "totalExpence": 35000
+    },
+    {
+        "name": "Kerala",
+        "date": "10-7-2025",
+        "totalExpence": 42000
+    },
+    {
+        "name": "Jaipur",
+        "date": "5-8-2025",
+        "totalExpence": 30000
+    }
+]

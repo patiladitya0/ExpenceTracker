@@ -46,6 +46,10 @@ const data = {
       ],
     },
     {
+      title: "Trip",
+      url: "/dashboard/trip",
+    },
+    {
       title: "Analysis",
       url: "/dashboard/analysis",
     },
