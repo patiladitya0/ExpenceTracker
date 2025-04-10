@@ -29,7 +29,7 @@ const Filters = () => {
     <div>
       <div className="flex items-center py-4 gap-3 flex-wrap">
         <Input placeholder="Search Trips" className="max-w-sm" />
-        <RangeDate date={undefined} setDate={undefined} />
+        {/* <RangeDate date={undefined} setDate={undefined} /> */}
       </div>
     </div>
   );
